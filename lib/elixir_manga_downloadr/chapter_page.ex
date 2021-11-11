@@ -23,7 +23,10 @@ defmodule ElixirMangaDownloadr.ChapterPage do
             ]
         ) :: list
   def fetch_pages(html) do
-    Floki.find(html, "div.manga-navigations") |> Floki.attribute("img", "src")
+    chapters_list = Floki.find(html, "div.manga-navigations") |> Floki.attribute("img", "src")
+
+    chapters_list
+    |> Enum.with_index(fn element, index -> {index, element} end)
   end
 
   def download_pages(pages_list) do
