@@ -1,7 +1,7 @@
 defmodule ElixirMangaDownloadr.IndexPage do
   @spec chapters(any) :: {:err, <<_::72>>} | {:ok, any, list}
   def chapters(manga_name) do
-    case HTTPotion.get("https://mangayabu.top/manga/#{manga_name}/") do
+    case HTTPotion.get("mangareader.cc/manga/#{manga_name}") do
       %HTTPotion.Response{body: body, headers: _headers, status_code: 200} ->
         {:ok, fetch_manga_title(body), fetch_chapters(body)}
 
@@ -11,7 +11,9 @@ defmodule ElixirMangaDownloadr.IndexPage do
   end
 
   def fetch_manga_title(html) do
-    Floki.find(html, "h1")
+    {:ok, document} = Floki.parse_document(html)
+
+    Floki.find(document, "h1")
     |> Enum.map(fn {"h1", [], [title]} -> title end)
     |> Enum.at(0)
   end
