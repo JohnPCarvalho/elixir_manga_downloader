@@ -2,7 +2,7 @@ defmodule ElixirMangaDownloadr.ChapterPage do
   @default_path "/tmp/"
 
   def get_chapter_pages(chapter_link) do
-    case HTTPotion.get("https://mangayabu.top/ler/#{chapter_link}") do
+    case HTTPotion.get("mangareader.cc/chapter/#{chapter_link}") do
       %HTTPotion.Response{body: body, headers: _headers, status_code: 200} ->
         fetch_pages(body)
         |> download_pages
@@ -43,7 +43,7 @@ defmodule ElixirMangaDownloadr.ChapterPage do
     |> Enum.map(fn image -> save_image(image, @default_path) end)
   end
 
-  #TODO
+  # TODO
   # Dar o nome das imagens dinamicamente
   def save_image(image, path) do
     File.write(path, image)
