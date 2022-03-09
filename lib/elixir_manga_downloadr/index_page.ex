@@ -11,15 +11,13 @@ defmodule ElixirMangaDownloadr.IndexPage do
   end
 
   def fetch_manga_title(html) do
-    {:ok, document} = Floki.parse_document(html)
-
-    Floki.find(document, "h1")
-    |> Enum.map(fn {"h1", [], [title]} -> title end)
-    |> Enum.at(0)
+    {:ok, document} = Floki.parse_document(html)  
+    [{_, [{_, _}], [title]}] = Floki.find(document, "h1") 
+    title
   end
 
   def fetch_chapters(html) do
-    Floki.find(html, "div.single-chapter a")
-    |> Enum.map(fn {"a", [{_, _}, {_, _}, {"href", url}], _} -> url end)
+    Floki.find(html, "ul>li>span>a")
+    |> Floki.attribute("href")
   end
 end
