@@ -21,8 +21,8 @@ defmodule ElixirMangaDownloadr.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
-      {:httpotion, "~> 2.1.0"},
+      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.4.0", override: true},
+      {:tesla, "~> 1.4"}, 
       {:floki, "~> 0.31.0"}
     ]
   end
