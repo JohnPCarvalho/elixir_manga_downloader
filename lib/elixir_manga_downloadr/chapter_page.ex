@@ -28,14 +28,14 @@ defmodule ElixirMangaDownloadr.ChapterPage do
     String.split(chapters_list, ",")
   end
 
-  # def download_pages(pages_list) do
-  #  Enum.map(pages_list, fn page -> download_page(page) end)
-  # end
+  def download_and_save_pages(pages_list) do
+    Enum.map(pages_list, fn page -> download_page(page) end)
+  end
 
-  # def download_page(page_url) do
-  #  %HTTPotion.Response{body: body} = HTTPotion.get(page_url)
-  #  {:ok, body}
-  # end
+  def download_page(page_url) do
+    {:ok, %Tesla.Env{body: image}} = Tesla.get(page_url)
+    image
+  end
 
   # def save_images(images_list) do
   #  images_list
