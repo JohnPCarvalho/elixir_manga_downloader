@@ -22,10 +22,10 @@ defmodule ElixirMangaDownloadr.ChapterPage do
             ]
         ) :: list
   def fetch_pages(html) do
-    chapters_list = Floki.find(html, "div#readerarea")
+    chapters = Floki.find(html, "p#arraydata")
+    [{ _, [{_, _}, {_, _}] ,[chapters_list]}] = chapters 
 
-    chapters_list
-    |> Enum.with_index(fn element, index -> {index, element} end)
+    String.split(chapters_list, ",")
   end
 
   # def download_pages(pages_list) do
