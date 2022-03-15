@@ -1,6 +1,4 @@
 defmodule ElixirMangaDownloadr.ChapterPage do
-  #@default_path "/tmp/"
-
   def get_chapter_pages(chapter_link) do
     case Tesla.get("http://mangareader.cc/chapter/#{chapter_link}") do
       {:ok, %Tesla.Env{body: body, status: 200}} ->
@@ -23,13 +21,22 @@ defmodule ElixirMangaDownloadr.ChapterPage do
         ) :: list
   def fetch_pages(html) do
     chapters = Floki.find(html, "p#arraydata")
-    [{ _, [{_, _}, {_, _}] ,[chapters_list]}] = chapters 
+    [{_, [{_, _}, {_, _}], [chapters_list]}] = chapters
 
     String.split(chapters_list, ",")
   end
 
   def download_and_save_pages(pages_list) do
-    Enum.map(pages_list, fn page -> download_page(page) end)
+    IO.puts("Downloading pages from #{pages_list}")
+
+    Enum.map(pages_list, fn page ->
+      IO.puts("Page: #{page}")
+
+      download_page(page)
+      |> save_image("#{page}.jpg")
+
+      IO.puts("saving images...")
+    end)
   end
 
   def download_page(page_url) do
@@ -37,13 +44,12 @@ defmodule ElixirMangaDownloadr.ChapterPage do
     image
   end
 
-  # def save_images(images_list) do
-  #  images_list
-  #  |> Enum.map(fn image -> save_image(image, @default_path) end)
-  # end
+ # def save_images(images_list) do
+ #   images_list
+ #   |> Enum.map(fn image -> save_image(image, @default_path) end)
+ # end
 
-  #
-  # def save_image(image, path) do
-  #  File.write(path, image)
-  # end
+  def save_image(image, path) do
+    File.write(path, image)
+  end
 end
