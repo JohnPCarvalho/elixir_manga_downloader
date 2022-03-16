@@ -29,13 +29,11 @@ defmodule ElixirMangaDownloadr.ChapterPage do
   def download_and_save_pages(pages_list) do
     IO.puts("Downloading pages from #{pages_list}")
 
-    Enum.map(pages_list, fn page ->
-      IO.puts("Page: #{page}")
-
+    pages_list
+    |> Enum.with_index()
+    |> Enum.map(fn {page, index} ->
       download_page(page)
-      |> save_image("#{page}.jpg")
-
-      IO.puts("saving images...")
+      |> save_image("#{index}.jpg")
     end)
   end
 
@@ -44,10 +42,10 @@ defmodule ElixirMangaDownloadr.ChapterPage do
     image
   end
 
- # def save_images(images_list) do
- #   images_list
- #   |> Enum.map(fn image -> save_image(image, @default_path) end)
- # end
+  # def save_images(images_list) do
+  #   images_list
+  #   |> Enum.map(fn image -> save_image(image, @default_path) end)
+  # end
 
   def save_image(image, path) do
     File.write(path, image)
