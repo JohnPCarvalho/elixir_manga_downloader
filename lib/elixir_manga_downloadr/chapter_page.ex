@@ -42,11 +42,6 @@ defmodule ElixirMangaDownloadr.ChapterPage do
     image
   end
 
-  # def save_images(images_list) do
-  #   images_list
-  #   |> Enum.map(fn image -> save_image(image, @default_path) end)
-  # end
-
   def save_image(image, path) do
     File.write(path, image)
   end
