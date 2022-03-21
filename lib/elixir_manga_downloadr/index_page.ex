@@ -1,7 +1,10 @@
 defmodule ElixirMangaDownloadr.IndexPage do
   def index_page(manga_name) do
     case Tesla.get("http://mangareader.cc/manga/#{manga_name}") do
-      {:ok, %Tesla.Env{body: body, status: 200}} -> body
+      {:ok, %Tesla.Env{body: body, status: 200}} -> 
+        body
+        |> fetch_manga_title()
+        |> fetch_chapters()
       _ -> {:error, "Wasn't possible to reach the page"}
     end
   end
