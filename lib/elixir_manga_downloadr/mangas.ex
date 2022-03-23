@@ -4,8 +4,6 @@ defmodule ElixirMangaDownloadr.Mangas do
   alias ElixirMangaDownloadr.IndexPage
   alias ElixirMangaDownloadr.ChapterPage
 
-
-
   def create_manga(manga_name) do
     manga_name =
       IndexPage.index_page(manga_name)
@@ -16,15 +14,15 @@ defmodule ElixirMangaDownloadr.Mangas do
       |> IndexPage.fetch_chapters
     
 
-    %Manga{manga_name: manga_name, chapters_list: chapters_list}
+    {manga_name, chapters_list}
   end
 
-  #def download_all_chapters() do
-  #end
+  def download_all_chapters() do
+  end
 
-  #defp create_folders(manga_path) do
-  #end
+  defp create_folders(manga_path) do
+  end
 
-  #defp manage_files() do
-  #end
+  defp manage_files() do
+  end
 end
