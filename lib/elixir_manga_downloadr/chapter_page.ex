@@ -37,12 +37,12 @@ defmodule ElixirMangaDownloadr.ChapterPage do
     end)
   end
 
-  def download_page(page_url) do
+  defp download_page(page_url) do
     {:ok, %Tesla.Env{body: image}} = Tesla.get(page_url)
     image
   end
 
-  def save_image(image, path) do
+  defp save_image(image, path) do
     File.write(path, image)
   end
 end
