@@ -1,26 +1,19 @@
 defmodule ElixirMangaDownloadr.ChapterPage do
   def get_chapter_pages(chapter_link) do
-    case Tesla.get("http://mangareader.cc/chapter/#{chapter_link}") do
+    case Tesla.get(chapter_link) do
       {:ok, %Tesla.Env{body: body, status: 200}} ->
         body
 
       _ ->
-        {:error, "It was not possible to reach the page"}
+        {:error, "It was not possible to reach the page #{chapter_link}"}
     end
   end
 
   # It loads all pages at once
-  @spec fetch_pages(
-          binary
-          | [
-              binary
-              | {:comment, binary}
-              | {:pi | binary, binary | [{any, any}], list}
-              | {:doctype, binary, binary, binary}
-            ]
-        ) :: list
   def fetch_pages(html) do
     chapters = Floki.find(html, "p#arraydata")
+    IO.inspect(html)
+    IO.inspect(chapters)
     [{_, [{_, _}, {_, _}], [chapters_list]}] = chapters
 
     String.split(chapters_list, ",")

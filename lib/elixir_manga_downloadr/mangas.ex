@@ -15,7 +15,7 @@ defmodule ElixirMangaDownloadr.Mangas do
   end
 
   def download_all_chapters(%Manga{chapters_list: chapters_list}) do
-    Enum.map(chapters_list, fn chapter -> 
+    Enum.map(chapters_list, fn chapter ->
       ChapterPage.get_chapter_pages(chapter)
       |> ChapterPage.fetch_pages()
       |> ChapterPage.download_and_save_pages()
