@@ -29,6 +29,7 @@ defmodule ElixirMangaDownloadr.IndexPage do
     Floki.find(html, "ul>li>span>a")
     |> Floki.attribute("href")
     |> clean_chapters_list()
+    |> Enum.reverse()
   end
 
   defp clean_chapters_list(chapters_list) do
