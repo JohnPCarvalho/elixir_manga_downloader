@@ -14,13 +14,17 @@ defmodule ElixirMangaDownloadr.Mangas do
     }
   end
 
-  def download_all_chapters(%Manga{chapters_list: chapters_list}) do
+  def download_all_chapters(%Manga{manga_name: manga_name, chapters_list: chapters_list}) do
+    {:ok, absolute_path} = File.cwd()
+    File.mkdir("#{absolute_path}/#{manga_name}")
+    File.cd("#{absolute_path}/#{manga_name}")
 
-    # TODO: cria a pasta principal (usando %Manga{manga_name: manga_name})
+    chapters_list
+    |> Enum.with_index()
+    |> Enum.map(fn {chapter, index} ->
+      File.mkdir("#{absolute_path}/#{manga_name}/#{index}")
+      File.cd("#{absolute_path}/#{manga_name}/#{index}")
 
-    Enum.map(chapters_list, fn chapter ->
-      # TODO: cria a pasta para o capítulo e entra na pasta
-      
       ChapterPage.get_chapter_pages(chapter)
       |> ChapterPage.fetch_pages()
       |> ChapterPage.download_and_save_pages()
