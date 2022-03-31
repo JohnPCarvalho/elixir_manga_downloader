@@ -1,6 +1,8 @@
 defmodule ElixirMangaDownloadr.ChapterPage do
   def get_chapter_pages(chapter_link) do
     case Tesla.get(chapter_link) do
+      # TODO: criar o módulo para o Tesla - precisa tratar o redirecionamento das 
+      # páginas (quando ocorre do mangaraeder pro manganato)
       {:ok, %Tesla.Env{body: body, status: 200}} ->
         body
 
