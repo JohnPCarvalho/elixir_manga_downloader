@@ -23,6 +23,7 @@ defmodule ElixirMangaDownloadr.Mangas do
     |> Enum.map(fn {chapter, index} ->
       File.cd(manga_path)
       create_folder("#{index + 1}")
+
       get_chapter_pages(chapter)
       |> fetch_pages()
       |> download_and_save_pages
