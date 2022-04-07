@@ -6,10 +6,8 @@ defmodule Chapters do
   def chapter_page(chapter_link) do
     case get(chapter_link) do
       {:ok, %Tesla.Env{body: body, status: 200}} ->
-         body 
+        {:ok, parsed_body} = Floki.parse_document(body)
+        parsed_body
     end
-  end
-
-  defp find_redirect_link() do
   end
 end
