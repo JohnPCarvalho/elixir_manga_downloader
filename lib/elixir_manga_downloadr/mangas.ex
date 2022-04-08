@@ -1,12 +1,16 @@
 defmodule ElixirMangaDownloadr.Mangas do
   alias ElixirMangaDownloadr.Manga
+
   import ElixirMangaDownloadr.IndexPage
   import ElixirMangaDownloadr.ChapterPage
   import ElixirMangaDownloadr.Files
 
+  import MainPage
+  import Chapters
+
   def create_manga(manga_name) do
     manga =
-      index_page(manga_name)
+      main_manga_page(manga_name)
       |> get_manga_info()
 
     %Manga{
@@ -24,7 +28,7 @@ defmodule ElixirMangaDownloadr.Mangas do
       File.cd(manga_path)
       create_folder("#{index + 1}")
 
-      get_chapter_pages(chapter)
+      chapter_page(chapter)
       |> fetch_pages()
       |> download_and_save_pages
     end)
