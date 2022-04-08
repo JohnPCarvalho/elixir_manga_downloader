@@ -1,15 +1,4 @@
 defmodule ElixirMangaDownloadr.IndexPage do
-  def index_page(manga_name) do
-    case Tesla.get("http://mangareader.cc/manga/#{manga_name}") do
-      {:ok, %Tesla.Env{body: body, status: 200}} ->
-        {:ok, document} = Floki.parse_document(body)
-        document
-
-      _ ->
-        {:error, "Wasn't possible to reach the page"}
-    end
-  end
-
   def get_manga_info(html) do
     manga_title = fetch_manga_title(html)
     chapters_list = fetch_chapters(html)
