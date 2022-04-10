@@ -33,4 +33,12 @@ defmodule ElixirMangaDownloadr.Mangas do
       |> download_and_save_pages
     end)
   end
+
+  defp needs_resuming_download?() do
+      if check_remaining_chapter(manga_path, chapters_list) > 0 do
+      false
+    else
+      true
+    end
+  end
 end
