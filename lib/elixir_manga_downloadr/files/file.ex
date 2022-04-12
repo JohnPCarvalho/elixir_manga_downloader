@@ -2,7 +2,7 @@ defmodule ElixirMangaDownloadr.Files do
   def set_manga_path(manga_name) do
     File.cd("#{System.user_home()}/")
     create_folder(manga_name)
-    get_manga_path
+    get_manga_path()
   end
 
   def get_manga_path() do
@@ -10,7 +10,7 @@ defmodule ElixirMangaDownloadr.Files do
     path
   end
 
-  def check_remaining_chapters(manga_path, chapters_list) do
+  def remaining_chapters(manga_path, chapters_list) do
     {:ok, files} = File.ls(manga_path)
     length(chapters_list) - length(files)
   end
