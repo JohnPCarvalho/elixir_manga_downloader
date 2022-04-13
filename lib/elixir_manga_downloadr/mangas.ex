@@ -22,7 +22,7 @@ defmodule ElixirMangaDownloadr.Mangas do
   def download_all_chapters(%Manga{manga_name: manga_name, chapters_list: chapters_list}) do
     manga_path = set_manga_path(manga_name)
 
-    if remaining_chapters(manga_path, chapters_list) <= 0 do
+    if remaining_chapters(manga_path, chapters_list) == length(chapters_list) do
       chapters_list
       |> Enum.with_index()
       |> Enum.map(fn {chapter, index} ->
@@ -34,7 +34,10 @@ defmodule ElixirMangaDownloadr.Mangas do
         |> download_and_save_pages
       end)
     else
+      File.cd(manga_path)
+
       Enum.drop(chapters_list, remaining_chapters(manga_path, chapters_list))
+      |> Enum.reverse()
       |> Enum.with_index()
       |> Enum.map(fn {chapter, index} ->
         File.cd(manga_path)
