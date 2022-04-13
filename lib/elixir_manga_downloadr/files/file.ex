@@ -1,7 +1,13 @@
 defmodule ElixirMangaDownloadr.Files do
   def set_manga_path(manga_name) do
-    File.cd("#{System.user_home()}/")
-    create_folder(manga_name)
+    File.cd("#{System.user_home()}/")    
+    # TODO: adicionar condicional para checar se a pasta já existe
+    if File.exists?("#{manga_name}") do
+      File.cd(manga_name)
+    else
+      File.mkdir(manga_name)
+      File.cd(manga_name)
+    end
     get_manga_path()
   end
 
@@ -16,10 +22,7 @@ defmodule ElixirMangaDownloadr.Files do
   end
 
   def create_folder(folder_name) do
-    case File.mkdir(folder_name) do
-      :ok -> File.cd(folder_name)
-      :eexist -> File.cd(folder_name)
-      {:error, _posix} -> "Something went wrong" 
+    File.mkdir(folder_name)
+    File.cd(folder_name)
     end
-  end
 end
