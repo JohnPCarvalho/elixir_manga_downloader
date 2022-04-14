@@ -21,6 +21,12 @@ defmodule ElixirMangaDownloadr.Files do
     length(chapters_list) - length(files)
   end
 
+  def check_downloaded_chapters(manga_path) do
+    {:ok, files} = File.ls(manga_path)
+    length(files)
+  end
+
+
   def create_folder(folder_name) do
     File.mkdir(folder_name)
     File.cd(folder_name)

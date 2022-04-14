@@ -35,13 +35,12 @@ defmodule ElixirMangaDownloadr.Mangas do
       end)
     else
       File.cd(manga_path)
-
-      Enum.drop(chapters_list, remaining_chapters(manga_path, chapters_list))
-      |> Enum.reverse()
+      chapters_downloaded = check_downloaded_chapters(manga_path)
+      Enum.drop(chapters_list, chapters_downloaded - 1)
       |> Enum.with_index()
       |> Enum.map(fn {chapter, index} ->
         File.cd(manga_path)
-        create_folder("#{index + 1}")
+        create_folder("#{index + chapters_downloaded}")
 
         chapter_page(chapter)
         |> fetch_pages()
