@@ -22,30 +22,40 @@ defmodule ElixirMangaDownloadr.Mangas do
   def download_all_chapters(%Manga{manga_name: manga_name, chapters_list: chapters_list}) do
     manga_path = set_manga_path(manga_name)
 
-    if remaining_chapters(manga_path, chapters_list) == length(chapters_list) do
+    if new_download?(manga_path) == true do
       chapters_list
       |> Enum.with_index()
       |> Enum.map(fn {chapter, index} ->
         File.cd(manga_path)
         create_folder("#{index + 1}")
-
-        chapter_page(chapter)
-        |> fetch_pages()
-        |> download_and_save_pages
+        fetch_and_download(chapter)
       end)
     else
       File.cd(manga_path)
       chapters_downloaded = check_downloaded_chapters(manga_path)
+
       Enum.drop(chapters_list, chapters_downloaded - 1)
       |> Enum.with_index()
       |> Enum.map(fn {chapter, index} ->
         File.cd(manga_path)
         create_folder("#{index + chapters_downloaded}")
-
-        chapter_page(chapter)
-        |> fetch_pages()
-        |> download_and_save_pages
+        fetch_and_download(chapter)
       end)
     end
+  end
+
+  defp new_download?(manga_path) do
+    {:ok, files} = File.ls(manga_path)
+    if length(files) == 0 do
+      true
+    else
+      false
+    end
+  end
+
+  defp fetch_and_download(chapter) do
+    chapter_page(chapter)
+    |> fetch_pages()
+    |> download_and_save_pages
   end
 end
