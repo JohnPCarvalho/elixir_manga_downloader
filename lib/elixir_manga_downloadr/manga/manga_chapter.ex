@@ -1,6 +1,6 @@
-defmodule ElixirMangaDownloar.MangaChapter do
+defmodule ElixirMangaDownloadr.MangaChapter do
   defstruct [
-    chapter_number: nil,
-    chapter_pages: []
+    chapter_title: nil,
+    chapter_link: nil
   ] 
 end
