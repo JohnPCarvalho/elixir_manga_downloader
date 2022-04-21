@@ -24,22 +24,20 @@ defmodule ElixirMangaDownloadr.Mangas do
 
     if new_download?(manga_path) == true do
       chapters_list
-      |> Enum.with_index()
-      |> Enum.map(fn {chapter, index} ->
+      |> Enum.map(fn chapter ->  
         File.cd(manga_path)
-        create_folder("#{index + 1}")
-        fetch_and_download(chapter)
+        create_folder(chapter.chapter_title)
+        fetch_and_download(chapter.chapter_link)
       end)
     else
       File.cd(manga_path)
       chapters_downloaded = check_downloaded_chapters(manga_path)
 
       Enum.drop(chapters_list, chapters_downloaded - 1)
-      |> Enum.with_index()
-      |> Enum.map(fn {chapter, index} ->
+      |> Enum.map(fn chapter ->  
         File.cd(manga_path)
-        create_folder("#{index + chapters_downloaded}")
-        fetch_and_download(chapter)
+        create_folder(chapter.chapter_title)
+        fetch_and_download(chapter.chapter_link)
       end)
     end
   end
