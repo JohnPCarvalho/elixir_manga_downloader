@@ -29,6 +29,7 @@ defmodule ElixirMangaDownloadr.IndexPage do
       chapter_link =
         Floki.find(list_item, "a")
         |> Floki.attribute("href")
+        |> Floki.text()
 
       %MangaChapter{chapter_title: chapter_title, chapter_link: chapter_link}
     end)
