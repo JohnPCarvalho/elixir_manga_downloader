@@ -9,7 +9,7 @@ defmodule PdfConverter do
       |> Pdf.add_page([600, 450])
       |> Pdf.add_image(
         {0, 0},
-        "/home/johnny/Neon Genesis Evangelion/Neon Genesis Evangelion Chapter 1/3.jpg", [100, 150]
+        "/home/johnny/Neon Genesis Evangelion/Neon Genesis Evangelion Chapter 1/1.jpg", [100, 150]
       )
       |> Pdf.write_to("test.pdf")
     end)
