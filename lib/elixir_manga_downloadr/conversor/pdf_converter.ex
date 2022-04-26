@@ -1,4 +1,5 @@
 defmodule ElixirMangaDownloadr.PdfConverter do
+  alias ElixirMangaDownloadr.Files
   alias ElixirMangaDownloadr.MangaChapter
 
   @page_size [600, 450]
@@ -29,7 +30,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
     Pdf.add_page(pdf, @page_size)
   end
 
-  def add_image(_pdf, image_path) do
-    Pdf.add_image({0, 0}, image_path)
+  def add_image(pdf, image_path) do
+    Pdf.add_image(pdf, {0, 0}, image_path)
   end
 end
