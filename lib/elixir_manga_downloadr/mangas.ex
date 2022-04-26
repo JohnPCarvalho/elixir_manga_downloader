@@ -24,7 +24,7 @@ defmodule ElixirMangaDownloadr.Mangas do
 
     if new_download?(manga_path) == true do
       chapters_list
-      |> Enum.map(fn chapter ->  
+      |> Enum.map(fn chapter ->
         File.cd(manga_path)
         create_folder(chapter.chapter_title)
         fetch_and_download(chapter.chapter_link)
@@ -34,7 +34,7 @@ defmodule ElixirMangaDownloadr.Mangas do
       chapters_downloaded = check_downloaded_chapters(manga_path)
 
       Enum.drop(chapters_list, chapters_downloaded - 1)
-      |> Enum.map(fn chapter ->  
+      |> Enum.map(fn chapter ->
         File.cd(manga_path)
         create_folder(chapter.chapter_title)
         fetch_and_download(chapter.chapter_link)
@@ -44,6 +44,7 @@ defmodule ElixirMangaDownloadr.Mangas do
 
   defp new_download?(manga_path) do
     {:ok, files} = File.ls(manga_path)
+
     if length(files) == 0 do
       true
     else
