@@ -2,35 +2,13 @@ defmodule ElixirMangaDownloadr.Files do
   @home_dir System.user_home()
 
   def set_manga_path(manga_title) do
-    case enter_manga_path(manga_title) do
-      :ok ->
-        get_manga_path(manga_title)
-
-      :error ->
-        create_folder(manga_title)
-        enter_manga_path(manga_title)
-    end
-
-    File.cd("#{@home_dir}/")
-    # TODO: adicionar condicional para checar se a pasta já existe
-    if File.exists?("#{manga_title}") do
-      get_manga_path(manga_title)
-    else
-      create_folder(manga_title)
-      File.cd(manga_title)
-    end
-
+    create_folder("#{@home_dir}/#{manga_title}")
+    enter_manga_path(manga_title)
     get_manga_path(manga_title)
   end
 
   def enter_manga_path(manga_title) do
-    if File.exists?("#{@home_dir}/#{manga_title}") do
-      File.cd("#{@home_dir}/#{manga_title}")
-      :ok
-    else
-      IO.puts("This directory does not exist")
-      :error
-    end
+    File.cd("#{@home_dir}/#{manga_title}")
   end
 
   defp get_manga_path(manga_title) do
