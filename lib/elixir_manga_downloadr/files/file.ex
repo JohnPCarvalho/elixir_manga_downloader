@@ -39,7 +39,6 @@ defmodule ElixirMangaDownloadr.Files do
   end
 
   def create_folder(folder_name) do
-    # TODO: separar essa função em duas. create_folder() deve apenas criar a pasta e não entrar nela também
     File.mkdir(folder_name)
   end
 end
