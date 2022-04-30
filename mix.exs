@@ -22,9 +22,9 @@ defmodule ElixirMangaDownloadr.MixProject do
   defp deps do
     [
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.4.0", override: true},
-      {:tesla, "~> 1.4"}, 
+      {:tesla, "~> 1.4"},
       {:floki, "~> 0.31.0"},
-      {:pdf, "~> 0.3"}
+      {:porcelain, "~> 2.0.3"}
     ]
   end
 end
