@@ -1,5 +1,6 @@
 defmodule ElixirMangaDownloadr.PdfConverter do
   alias ElixirMangaDownloadr.Files
+  require Logger
 
   # Kindle maximum resolution
   @image_dimensions "600x800"
@@ -10,14 +11,28 @@ defmodule ElixirMangaDownloadr.PdfConverter do
   # has to wait for huge number of async Tasks at once
   @await_timeout_ms 1_000_000
 
-  def optimize_images(directory) do
-    Logger.debug("Running mogrify to convert all images down to Kindle supported size (600x800)")
-    Porcelain.shell("mogrify -resize #{@image_dimensions} #directory/*.jpg")
-    directory
+  def testing_this_thing(directory, manga_name) do
+    {:ok, files} = File.ls(directory)
+    File.cd(directory)
+
+    Enum.map(files, fn chapter ->
+      File.cd(chapter)
+      optimize_images(chapter)
+      File.cd("../")
+    end)
+  end
+
+  def optimize_images(chapter_folder) do
+    Logger.debug(
+      "Running mogrify to convert all images from #{chapter_folder} down to Kindle supported size (600x800)"
+    )
+
+    Porcelain.shell("mogrify -resize #{@image_dimensions} *.jpg")
+    chapter_folder
   end
 
   def compile_pdfs(directory, manga_name) do
-    {:ok, final_files_list} = File.ls(directory)
+    {:ok, final_files_list} = File.ls()
 
     final_files_list
     |> Enum.sort()
@@ -34,16 +49,16 @@ defmodule ElixirMangaDownloadr.PdfConverter do
     directory
   end
 
-  defp compile_volume(manga_name, directory, {chunk, index}) do
+  def compile_volume(manga_name, directory, {chunk, index}) do
     {:ok, convert_cmd} = prepare_volume(manga_name, directory, chunk, index)
     Logger.debug("Compiling volume #{index + 1}.")
     Task.async(fn -> Porcelain.shell(convert_cmd) end)
   end
 
-  defp prepare_volume(manga_name, directory, chunk, index) do
+  def prepare_volume(manga_name, directory, chunk, index) do
     volume_directory = "#{directory}/#{manga_name}_#{index + 1}"
     volume_file = "#{volume_directory}.pdf"
-    File.mkdir_p(volume_directory)
+    Files.create_folder(volume_directory)
 
     Enum.each(chunk, fn file ->
       [destination_file | _rest] = String.split(file, "/") |> Enum.reverse()
@@ -53,7 +68,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
     {:ok, "convert #{volume_directory}/*.jpg #{volume_file}"}
   end
 
-  defp chunk(collection, default_size) do
+  def chunk(collection, default_size) do
     size = [Enum.count(collection), default_size] |> Enum.min()
     Enum.chunk(collection, size, size, [])
   end
