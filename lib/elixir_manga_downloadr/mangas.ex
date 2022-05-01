@@ -30,6 +30,7 @@ defmodule ElixirMangaDownloadr.Mangas do
         create_folder(chapter.chapter_title)
         File.cd(chapter.chapter_title)
         fetch_and_download(chapter.chapter_link)
+        manga_path
       end)
     else
       File.cd(manga_path)
@@ -42,17 +43,14 @@ defmodule ElixirMangaDownloadr.Mangas do
         File.cd(chapter.chapter_title)
         fetch_and_download(chapter.chapter_link)
       end)
+
+      manga_path
     end
   end
 
   defp new_download?(manga_path) do
     {:ok, files} = File.ls(manga_path)
-
-    if length(files) == 0 do
-      true
-    else
-      false
-    end
+    length(files) == 0
   end
 
   defp fetch_and_download(chapter) do
