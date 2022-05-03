@@ -41,4 +41,16 @@ defmodule ElixirMangaDownloadr.Files do
   def create_folder(folder_name) do
     File.mkdir(folder_name)
   end
+
+  def reorganize_images(list_of_images, extension) do
+    list_of_images
+    |> Enum.map(fn image ->
+      Path.basename(image, ".jpg")
+    end)
+    |> Enum.map(fn file ->
+      String.to_integer(file, 10)
+    end)
+    |> Enum.sort()
+    |> Enum.map(fn item -> "#{item}.#{extension}" end)
+  end
 end
