@@ -39,7 +39,7 @@ defmodule ElixirMangaDownloadr.Files do
   end
 
   def create_folder(folder_name) do
-    File.mkdir(folder_name)
+    File.mkdir_p(folder_name)
   end
 
   def reorganize_images(list_of_images, extension) do
