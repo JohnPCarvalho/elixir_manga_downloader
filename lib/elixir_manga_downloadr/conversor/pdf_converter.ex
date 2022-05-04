@@ -17,7 +17,10 @@ defmodule ElixirMangaDownloadr.PdfConverter do
 
     Enum.map(files, fn chapter ->
       File.cd(chapter)
+
       optimize_images(chapter)
+      |> compile_pdfs(manga_name)
+
       File.cd("../")
     end)
   end
@@ -35,7 +38,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
     {:ok, final_files_list} = File.ls()
 
     final_files_list
-    |> Enum.sort()
+    |> Files.reorganize_images("jpg")
     |> Enum.map(&"#{directory}/#{&1}")
     |> chunk(@pages_per_volume)
     |> Enum.with_index()
@@ -51,6 +54,8 @@ defmodule ElixirMangaDownloadr.PdfConverter do
 
   def compile_volume(manga_name, directory, {chunk, index}) do
     {:ok, convert_cmd} = prepare_volume(manga_name, directory, chunk, index)
+    require IEx
+    IEx.pry()
     Logger.debug("Compiling volume #{index + 1}.")
     Task.async(fn -> Porcelain.shell(convert_cmd) end)
   end
