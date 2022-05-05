@@ -54,8 +54,6 @@ defmodule ElixirMangaDownloadr.PdfConverter do
 
   def compile_volume(manga_name, directory, {chunk, index}) do
     {:ok, convert_cmd} = prepare_volume(manga_name, directory, chunk, index)
-    require IEx
-    IEx.pry()
     Logger.debug("Compiling volume #{index + 1}.")
     Task.async(fn -> Porcelain.shell(convert_cmd) end)
   end
@@ -70,7 +68,9 @@ defmodule ElixirMangaDownloadr.PdfConverter do
       File.rename(file, "#{volume_directory}/#{destination_file}")
     end)
 
-    {:ok, "convert #{volume_directory}/*.jpg #{volume_file}"}
+    require IEx
+    IEx.pry()
+    {:ok, "convert ./*.jpg #{volume_file}"}
   end
 
   def chunk(collection, default_size) do
