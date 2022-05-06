@@ -68,8 +68,6 @@ defmodule ElixirMangaDownloadr.PdfConverter do
       File.rename(file, "#{volume_directory}/#{destination_file}")
     end)
 
-    require IEx
-    IEx.pry()
     {:ok, "convert ./*.jpg #{volume_file}"}
   end
 
