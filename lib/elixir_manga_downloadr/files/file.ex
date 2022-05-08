@@ -55,8 +55,12 @@ defmodule ElixirMangaDownloadr.Files do
   end
 
   def organize_chapters(list_of_chapters) do
-    # TODO: a listagem deve ser feita já dentro do diretório
-    # TODO: retirar o nome do chapter antes do número
+    chapter_prefix =
+      list_of_chapters
+      |> List.first()
+      |> String.split(" ")
+      |> Enum.drop(-1)
+      |> Enum.join(" ")
 
     list_of_chapters =
       list_of_chapters
@@ -64,5 +68,8 @@ defmodule ElixirMangaDownloadr.Files do
       |> Enum.map(fn item -> List.last(item) end)
       |> Enum.map(fn item -> String.to_integer(item, 10) end)
       |> Enum.sort()
+      |> Enum.map(fn item -> "#{chapter_prefix} #{item}" end)
+
+    list_of_chapters
   end
 end
