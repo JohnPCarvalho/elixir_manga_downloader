@@ -15,7 +15,9 @@ defmodule ElixirMangaDownloadr.PdfConverter do
     {:ok, files} = File.ls(directory)
     File.cd(directory)
 
-    Enum.map(files, fn chapter ->
+    chapters = Files.organize_chapters()
+
+    Enum.map(chapters, fn chapter ->
       File.cd(chapter)
 
       optimize_images(chapter)
@@ -60,8 +62,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
 
   def prepare_volume(manga_name, directory, chunk, index) do
     volume_directory = "#{directory}/#{manga_name}_#{index + 1}"
-    volume_file = "#{volume_directory}.pdf"
-    Files.create_folder(volume_directory)
+    volume_file = "#{manga_name}_#{index + 1}.pdf"
 
     Enum.each(chunk, fn file ->
       [destination_file | _rest] = String.split(file, "/") |> Enum.reverse()
