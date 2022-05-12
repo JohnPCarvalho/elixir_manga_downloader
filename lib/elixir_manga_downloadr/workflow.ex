@@ -1,4 +1,12 @@
 defmodule ElixirMangaDownloadr.Workflow do
-  def process_manga(manga_name) do
+  alias ElixirMangaDownloadr.Files
+  alias ElixirMangaDownloadr.Mangas
+  alias ElixirMangaDownloadr.PdfConverter
+
+  def process_manga(manga_name, kindle) do
+    Mangas.create_manga(manga_name)
+    |> Mangas.download_all_chapters()
+    |> PdfConverter.convert_chapters()
+    |> Files.save_all(kindle)
   end
 end

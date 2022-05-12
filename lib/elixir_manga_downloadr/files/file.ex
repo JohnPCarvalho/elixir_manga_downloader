@@ -74,4 +74,16 @@ defmodule ElixirMangaDownloadr.Files do
 
     list_of_chapters
   end
+
+  def save_all(path, kindle) do
+    # checa se a opção do kindle será usada
+    # se sim
+    # acessa o path do dispositivo
+    # se não
+    # salva os pdfs gerados num diretório específico
+  end
+
+  def clean_directory(directory) do
+    # possívelmente será chamado no final do fluxo quando o kindle é utilizado
+  end
 end
