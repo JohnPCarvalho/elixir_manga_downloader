@@ -33,7 +33,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
   end
 
   def compile_pdfs(directory, manga_name) do
-    {:ok, final_files_list} = File.ls(directory)
+    {:ok, final_files_list} = File.ls()
 
     final_files_list
     |> Files.reorganize_images("jpg")
