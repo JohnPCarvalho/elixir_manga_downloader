@@ -83,7 +83,7 @@ defmodule ElixirMangaDownloadr.Files do
     # salva os pdfs gerados num diretório específico
   end
 
-  def clean_directory(directory) do
+  def clear_directory(directory) do
     # possívelmente será chamado no final do fluxo quando o kindle é utilizado
   end
 end
