@@ -51,7 +51,7 @@ defmodule ElixirMangaDownloadr.Files do
       String.to_integer(file, 10)
     end)
     |> Enum.sort()
-    |> Enum.map(fn item -> "#{item}.#{extension}" end)
+    |> Enum.map(fn item -> "0#{item}.#{extension}" end)
   end
 
   def organize_chapters() do

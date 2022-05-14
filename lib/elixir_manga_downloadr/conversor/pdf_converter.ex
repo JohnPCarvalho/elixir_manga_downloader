@@ -11,13 +11,13 @@ defmodule ElixirMangaDownloadr.PdfConverter do
   # has to wait for huge number of async Tasks at once
   @await_timeout_ms 1_000_000
 
-  def convert_chapters(manga_name) do
+  def convert_chapters(manga_path) do
     Files.organize_chapters()
     |> Enum.map(fn chapter ->
       File.cd(chapter)
 
       optimize_images(chapter)
-      |> compile_pdfs(manga_name)
+      |> compile_pdfs(manga_path)
 
       File.cd("../")
     end)
