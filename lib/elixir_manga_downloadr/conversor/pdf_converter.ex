@@ -61,6 +61,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
     volume_file = "#{volume_directory}.pdf"
     File.mkdir_p(volume_directory)
 
+    # debug better here
     Enum.each(chunk, fn file ->
       [destination_file | _rest] = String.split(file, "/") |> Enum.reverse()
       File.rename(file, "#{volume_directory}/#{destination_file}")
