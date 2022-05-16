@@ -57,17 +57,8 @@ defmodule ElixirMangaDownloadr.PdfConverter do
   end
 
   def prepare_volume(manga_name, directory, chunk, index) do
-    volume_directory = "#{directory}/#{manga_name}_#{index + 1}"
-    volume_file = "#{volume_directory}.pdf"
-    File.mkdir_p(volume_directory)
-
-    # debug better here
-    Enum.each(chunk, fn file ->
-      [destination_file | _rest] = String.split(file, "/") |> Enum.reverse()
-      File.rename(file, "#{volume_directory}/#{destination_file}")
-    end)
-
-    {:ok, "convert #{volume_directory}/*.jpg #{volume_file}"}
+    pdf_chapter_name = String.replace(directory, " ", "_")
+    {:ok, "convert $(ls -1 *.jpg | sort -V) #{pdf_chapter_name}.pdf"}
   end
 
   def chunk(collection, default_size) do
