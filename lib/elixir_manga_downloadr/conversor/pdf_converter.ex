@@ -52,7 +52,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
 
   def compile_volume(manga_name, directory, {chunk, index}) do
     {:ok, convert_cmd} = prepare_volume(manga_name, directory, chunk, index)
-    Logger.debug("Compiling volume #{index + 1}.")
+    Logger.debug("Compiling volume #{directory}.")
     Task.async(fn -> Porcelain.shell(convert_cmd) end)
   end
 
