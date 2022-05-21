@@ -21,6 +21,8 @@ defmodule ElixirMangaDownloadr.PdfConverter do
 
       File.cd("../")
     end)
+
+    manga_path
   end
 
   def optimize_images(chapter_folder) do
