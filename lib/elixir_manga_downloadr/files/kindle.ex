@@ -1,7 +1,7 @@
 defmodule ElixirMangaDownloadr.Kindle do
-  def save(files) do
+  def save() do
   end
 
-  defp get_kindle_path do
+  defp get_kindle_path() do
   end
 end

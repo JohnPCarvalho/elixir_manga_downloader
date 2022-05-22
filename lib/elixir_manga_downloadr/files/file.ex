@@ -85,6 +85,12 @@ defmodule ElixirMangaDownloadr.Files do
   end
 
   def clear_directory(directory) do
-    # possívelmente será chamado no final do fluxo quando o kindle é utilizado
+    # será utilizado ao final do fluxo para limpar todas as pastas com
+    # os jpgs e para mover apenas os pdfs para a pasta principal do mangá
+
+    # fluxo: 
+    # entra no diretório
+    # localiza todos os PDFs e salva-os na pasta principal
+    # deleta o restante dos arquivos, mantendo apenas os capítulos em pdf 
   end
 end
