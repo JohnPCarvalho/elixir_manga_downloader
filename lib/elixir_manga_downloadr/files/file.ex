@@ -84,13 +84,28 @@ defmodule ElixirMangaDownloadr.Files do
     end
   end
 
-  def clear_directory(directory) do
+  def move_file(file_path, file_destination) do
+    File.rename(file_path, file_destination)
+  end
+
+  defp clear_directory(directory) do
     # será utilizado ao final do fluxo para limpar todas as pastas com
     # os jpgs e para mover apenas os pdfs para a pasta principal do mangá
 
     # fluxo: 
     # entra no diretório
+    Files.enter_manga_path(directory)
     # localiza todos os PDFs e salva-os na pasta principal
+    {:ok, files} = File.ls()
+
+    Enum.map(files, fn file ->
+      File.cd(file)
+
+      get_chapter_pages()
+      |> Enum.find(fn file -> String.contains?(file, "pdf") end)
+      |> move_file("../")
+    end)
+
     # deleta o restante dos arquivos, mantendo apenas os capítulos em pdf 
   end
 end
