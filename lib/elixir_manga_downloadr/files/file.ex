@@ -92,8 +92,6 @@ defmodule ElixirMangaDownloadr.Files do
     # será utilizado ao final do fluxo para limpar todas as pastas com
     # os jpgs e para mover apenas os pdfs para a pasta principal do mangá
 
-    # fluxo: 
-    # entra no diretório
     Files.enter_manga_path(directory)
     # localiza todos os PDFs e salva-os na pasta principal
     {:ok, files} = File.ls()
