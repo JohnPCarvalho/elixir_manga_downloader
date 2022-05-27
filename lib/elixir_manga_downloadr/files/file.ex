@@ -75,33 +75,26 @@ defmodule ElixirMangaDownloadr.Files do
     list_of_chapters
   end
 
-  def save_all(path, kindle?) do
-    # checa se a opção do kindle será usada
-    if kindle? do
-      # acessa o path do dispositivo
-    else
-      # salva os pdfs gerados num diretório específico
-    end
-  end
-
   def move_file(file_path, file_destination) do
-    File.rename(file_path, file_destination)
+    File.cp(file_path, file_destination)
   end
 
-  defp clear_directory(directory) do
+  def clear_directory(directory) do
     # será utilizado ao final do fluxo para limpar todas as pastas com
     # os jpgs e para mover apenas os pdfs para a pasta principal do mangá
 
     enter_manga_path(directory)
     # localiza todos os PDFs e salva-os na pasta principal
-    {:ok, files} = File.ls()
+    files = organize_chapters()
 
     Enum.map(files, fn file ->
       File.cd(file)
 
-      get_chapter_pages()
-      |> Enum.find(fn file -> String.contains?(file, "pdf") end)
-      |> move_file("../")
+      pdf_chapter =
+        get_chapter_pages()
+        |> Enum.find(fn file -> String.contains?(file, "pdf") end)
+
+      move_file(pdf_chapter, "../#{pdf_chapter}")
     end)
 
     # deleta o restante dos arquivos, mantendo apenas os capítulos em pdf 
