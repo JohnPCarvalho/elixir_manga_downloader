@@ -95,6 +95,7 @@ defmodule ElixirMangaDownloadr.Files do
         |> Enum.find(fn file -> String.contains?(file, "pdf") end)
 
       move_file(pdf_chapter, "../#{pdf_chapter}")
+      File.cd("../")
     end)
 
     # deleta o restante dos arquivos, mantendo apenas os capítulos em pdf 
