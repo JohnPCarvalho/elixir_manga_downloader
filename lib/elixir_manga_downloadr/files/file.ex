@@ -98,7 +98,22 @@ defmodule ElixirMangaDownloadr.Files do
       File.cd("../")
     end)
 
-    # deleta o restante dos arquivos, mantendo apenas os capítulos em pdf 
+    remove_all_folders()
+  end
+
+  defp remove_all_folders() do
+    {:ok, files} = File.ls()
+    # Roda na lista 
+    # Verifica a extensão do arquivo. Só vai rodar se o arquivo não tiver extensão (for uma pasta)
+    # caso seja uma pasta, será deletada.
+    # Existe uma função no enum para só rodar quando a condição for verdadeira
+    # a condição a ser checada é verificar se a extensão do arquivo é diferente de .pdf (ou se String.contains?(.pdf))
+
+    Enum.each(files, fn file ->
+      require IEx
+      IEx.pry()
+      File.rmdir(file)
+    end)
   end
 
   def get_username() do

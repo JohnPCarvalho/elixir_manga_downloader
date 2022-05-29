@@ -20,8 +20,6 @@ defmodule ElixirMangaDownloadr.Kindle do
   end
 
   defp get_kindle_path() do
-    # Kindle path in Linux distros
     File.cd("/media/#{Files.get_username()}/Kindle/documents")
-    # TODO: get other OS's Kindle path
   end
 end
