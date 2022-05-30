@@ -110,8 +110,6 @@ defmodule ElixirMangaDownloadr.Files do
     # a condição a ser checada é verificar se a extensão do arquivo é diferente de .pdf (ou se String.contains?(.pdf))
 
     Enum.each(files, fn file ->
-      require IEx
-      IEx.pry()
       File.rmdir(file)
     end)
   end

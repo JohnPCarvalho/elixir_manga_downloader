@@ -15,8 +15,6 @@ defmodule ElixirMangaDownloadr.Kindle do
     Enum.each(list_of_files, fn pdf_chapter ->
       IO.inspect(pdf_chapter)
     end)
-
-    IO.inspect(get_kindle_path())
   end
 
   defp get_kindle_path() do
