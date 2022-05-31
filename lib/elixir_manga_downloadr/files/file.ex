@@ -11,7 +11,7 @@ defmodule ElixirMangaDownloadr.Files do
     File.cd("#{@home_dir}/#{manga_title}")
   end
 
-  defp get_manga_path(manga_title) do
+  def get_manga_path(manga_title) do
     enter_manga_path(manga_title)
     {:ok, path} = File.cwd()
     path

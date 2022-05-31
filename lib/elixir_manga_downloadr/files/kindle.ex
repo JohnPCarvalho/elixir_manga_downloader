@@ -8,13 +8,11 @@ defmodule ElixirMangaDownloadr.Kindle do
     end
   end
 
-  def greater_function_that_i_will_name_later(manga_name) do
-    Files.enter_manga_path(manga_name)
-    {:ok, list_of_files} = File.ls()
+  def move_manga_to_kindle(manga_name) do
+    manga_path = Files.get_manga_path(manga_name)
+    kindle_path = get_kindle_path()
 
-    Enum.each(list_of_files, fn pdf_chapter ->
-      IO.inspect(pdf_chapter)
-    end)
+    File.cp(manga_path, "#{kindle_path}/#{manga_name}")
   end
 
   defp get_kindle_path() do
