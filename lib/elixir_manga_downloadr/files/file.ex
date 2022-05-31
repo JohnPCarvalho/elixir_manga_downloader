@@ -80,11 +80,7 @@ defmodule ElixirMangaDownloadr.Files do
   end
 
   def clear_directory(directory) do
-    # será utilizado ao final do fluxo para limpar todas as pastas com
-    # os jpgs e para mover apenas os pdfs para a pasta principal do mangá
-
     enter_manga_path(directory)
-    # localiza todos os PDFs e salva-os na pasta principal
     files = organize_chapters()
 
     Enum.map(files, fn file ->
@@ -103,14 +99,11 @@ defmodule ElixirMangaDownloadr.Files do
 
   defp remove_all_folders() do
     {:ok, files} = File.ls()
-    # Roda na lista 
-    # Verifica a extensão do arquivo. Só vai rodar se o arquivo não tiver extensão (for uma pasta)
-    # caso seja uma pasta, será deletada.
-    # Existe uma função no enum para só rodar quando a condição for verdadeira
-    # a condição a ser checada é verificar se a extensão do arquivo é diferente de .pdf (ou se String.contains?(.pdf))
 
-    Enum.each(files, fn file ->
-      File.rmdir(file)
+    directories_list = Enum.filter(files, fn file -> Path.extname(file) != ".pdf" end)
+
+    Enum.each(directories_list, fn directory ->
+      File.rm_rf(directory)
     end)
   end
 
