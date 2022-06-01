@@ -10,12 +10,17 @@ defmodule ElixirMangaDownloadr.Kindle do
 
   def move_manga_to_kindle(manga_name) do
     manga_path = Files.get_manga_path(manga_name)
-    kindle_path = get_kindle_path()
+    enter_kindle_path()
+    {:ok, kindle_path} = get_kindle_path()
 
-    File.cp(manga_path, "#{kindle_path}/#{manga_name}")
+    File.cp_r(manga_path, "#{kindle_path}/#{manga_name}/")
   end
 
   defp get_kindle_path() do
+    File.cwd()
+  end
+
+  defp enter_kindle_path() do
     File.cd("/media/#{Files.get_username()}/Kindle/documents")
   end
 end
