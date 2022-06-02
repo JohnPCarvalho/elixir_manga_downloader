@@ -1,7 +1,7 @@
 defmodule ElixirMangaDownloadr.Kindle do
   alias ElixirMangaDownloadr.Files
 
-  def save(manga_name) do
+  def save(manga_name, kindle) when kindle == true do
     case enter_kindle_path() do
       :ok ->
         move_manga_to_kindle(manga_name)
