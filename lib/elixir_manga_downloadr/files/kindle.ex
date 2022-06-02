@@ -19,11 +19,4 @@ defmodule ElixirMangaDownloadr.Kindle do
     manga_name = Path.basename(manga_path)
     File.cp_r(manga_path, "#{@kindle_path}/#{manga_name}/")
   end
-
-  defp enter_kindle_path() do
-    case File.cd("/media/#{Files.get_username()}/Kindle/documents") do
-      :ok -> {File.cwd(), :found}
-      {:error, :enoent} -> :not_found
-    end
-  end
 end
