@@ -22,6 +22,7 @@ defmodule ElixirMangaDownloadr.PdfConverter do
       File.cd("../")
     end)
 
+    Files.clear_directory(manga_path)
     manga_path
   end
 
