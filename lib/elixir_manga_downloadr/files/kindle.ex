@@ -3,15 +3,18 @@ defmodule ElixirMangaDownloadr.Kindle do
 
   def save(manga_name) do
     case enter_kindle_path() do
-      :ok -> move_manga_to_kindle(manga_name)
-      {:error, :enoent} -> "Kindle path was not found"
+      :ok ->
+        move_manga_to_kindle(manga_name)
+
+      {:error, :enoent} ->
+        "Kindle path was not found"
+        # faz o restante do processo
     end
   end
 
-  def move_manga_to_kindle(manga_name) do
-    manga_path = Files.get_manga_path(manga_name)
+  def move_manga_to_kindle(manga_path) do
     {:ok, kindle_path} = get_kindle_path()
-
+    manga_name = Path.basename(manga_path)
     File.cp_r(manga_path, "#{kindle_path}/#{manga_name}/")
   end
 
