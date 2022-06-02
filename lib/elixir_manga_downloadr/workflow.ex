@@ -7,6 +7,6 @@ defmodule ElixirMangaDownloadr.Workflow do
     Mangas.create_manga(manga_name)
     |> Mangas.download_all_chapters()
     |> PdfConverter.convert_chapters()
-    |> Kindle.save_all()
+    |> Kindle.save()
   end
 end
