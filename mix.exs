@@ -8,7 +8,7 @@ defmodule ElixirMangaDownloadr.MixProject do
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
 
-      escript: [main_module: Commandline.CLI],
+      escript: [main_module: ElixirMangaDownloadr.CLI],
 
       deps: deps()
     ]

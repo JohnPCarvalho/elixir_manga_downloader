@@ -1,4 +1,4 @@
-defmodule Commandline.CLI do
+defmodule ElixirMangaDownloadr.CLI do
   def main(args) do
     options = [switches: [file: :string], aliases: [f: :file]]
 
