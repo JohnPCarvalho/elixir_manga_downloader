@@ -115,4 +115,8 @@ defmodule ElixirMangaDownloadr.Files do
 
     username
   end
+
+  def move_manga_to_documents(manga_path) do
+    File.cp_r(manga_path, "/home/johnny/Documents/Clannad")
+  end
 end

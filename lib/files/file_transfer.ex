@@ -1,9 +1,9 @@
-defmodule ElixirMangaDownloadr.Kindle do
+defmodule ElixirMangaDownloadr.FileTransfer do
   alias ElixirMangaDownloadr.Files
 
   @kindle_path "/media/#{Files.get_username()}/Kindle/documents"
 
-  def save(manga_path, kindle) when kindle == true do
+  def copy_files(manga_path) do
     if File.exists?(@kindle_path) do
       move_manga_to_kindle(manga_path)
     else
