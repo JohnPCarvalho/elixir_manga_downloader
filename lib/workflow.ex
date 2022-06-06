@@ -1,5 +1,4 @@
 defmodule ElixirMangaDownloadr.Workflow do
-  alias ElixirMangaDownloadr.Files
   alias ElixirMangaDownloadr.FileTransfer
   alias ElixirMangaDownloadr.Mangas
   alias ElixirMangaDownloadr.PdfConverter
