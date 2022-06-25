@@ -1,6 +1,6 @@
 # ElixirMangaDownloadr
 
-**TODO: Add description**
+**This is a WIP**
 
 ## Installation
 
