@@ -5,7 +5,7 @@ defmodule ElixirMangaDownloadr.Workflow do
 
   @doc """
     Starts the workflow to process the manga using the manga slug
-    manga_slug example: "neon-genesis-evangelion", "dragon-ball"
+    manga_slug example: "neon-genesis-evangelion", "dragon-ball", "hunter-x-hunter"
   """
   def process_manga(manga_slug) do
     Mangas.create_manga(manga_slug)
