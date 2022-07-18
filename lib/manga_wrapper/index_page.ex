@@ -16,10 +16,6 @@ defmodule ElixirMangaDownloadr.IndexPage do
     title
   end
 
-  defp order_chapters(chapters_list) do
-    Enum.reverse(chapters_list)
-  end
-
   def get_chapters(html) do
     Floki.find(html, "span.leftoff>a")
     |> order_chapters()
@@ -33,5 +29,9 @@ defmodule ElixirMangaDownloadr.IndexPage do
 
       %MangaChapter{chapter_title: chapter_title, chapter_link: chapter_link}
     end)
+  end
+
+  defp order_chapters(chapters_list) do
+    Enum.reverse(chapters_list)
   end
 end
