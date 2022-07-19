@@ -12,6 +12,8 @@ defmodule ElixirMangaDownloadr.IndexPageTest do
 
   describe "get_manga_info/1" do
     test "returns a tuple with manga_title and list of chapters" do
+
+      scrapped_html = get_manga_info(html)
     end
   end
 
