@@ -10,6 +10,10 @@ defmodule ElixirMangaDownloadr.IndexPageTest do
     chapter_link: "www.clannad.com/chapter1"
   }
 
+  setup do
+    # salvar dado da variável html
+  end
+
   describe "get_manga_info/1" do
     test "returns a tuple with manga_title and list of chapters" do
 
@@ -20,6 +24,8 @@ defmodule ElixirMangaDownloadr.IndexPageTest do
 
   describe "get_chapters/1" do
     test "get the chapters list and returns it in the MangaChapter struct" do
+
+      chapters_list = get_chapters(html)
     end
   end
 end
