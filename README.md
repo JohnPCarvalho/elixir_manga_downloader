@@ -1,7 +1,7 @@
 # ElixirMangaDownloadr
 
 **This is a WIP**
-The goal is to make this available as a web service
+The goal is to make this available as a web service.
 
 ## Installation
 
