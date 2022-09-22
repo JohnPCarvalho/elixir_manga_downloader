@@ -1,8 +1,6 @@
-defmodule ElixirMangaDownloadr.MangaWrapper.ChapterPage do
+defmodule ElixirMangaDownloadr.MangaScrapper.ChapterPage do
   def fetch_pages(html) do
     chapters = Floki.find(html, "p#arraydata")
-    IO.inspect(html)
-    IO.inspect(chapters)
     [{_, [{_, _}, {_, _}], [chapters_list]}] = chapters
 
     String.split(chapters_list, ",")

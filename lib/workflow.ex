@@ -1,7 +1,7 @@
 defmodule ElixirMangaDownloadr.Workflow do
-  alias ElixirMangaDownloadr.FileTransfer
+  alias ElixirMangaDownloadr.MangaWrapper.FileTransfer
   alias ElixirMangaDownloadr.MangaWrapper.Mangas
-  alias ElixirMangaDownloadr.PdfConverter
+  alias ElixirMangaDownloadr.MangaWrapper.PdfConverter
 
   @doc """
     Starts the workflow to process the manga using the manga slug

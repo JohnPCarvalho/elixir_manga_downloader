@@ -1,5 +1,5 @@
-defmodule ElixirMangaDownloadr.FileTransfer do
-  alias ElixirMangaDownloadr.Files
+defmodule ElixirMangaDownloadr.MangaWrapper.FileTransfer do
+  alias ElixirMangaDownloadr.MangaWrapper.Files
 
   @kindle_path "/media/#{Files.get_username()}/Kindle/documents"
 

@@ -1,4 +1,4 @@
-defmodule ElixirMangaDownloadr.PdfConverter do
+defmodule ElixirMangaDownloadr.MangaWrapper.PdfConverter do
   alias ElixirMangaDownloadr.Files
   require Logger
 

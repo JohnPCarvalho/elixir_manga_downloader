@@ -1,4 +1,4 @@
-defmodule ElixirMangaDownloadr.Files do
+defmodule ElixirMangaDownloadr.MangaWrapper.Files do
   @home_dir System.user_home()
 
   def set_manga_path(manga_title) do

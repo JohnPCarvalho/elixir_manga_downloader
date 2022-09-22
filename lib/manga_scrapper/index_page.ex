@@ -1,4 +1,4 @@
-defmodule ElixirMangaDownloadr.MangaWrapper.IndexPage do
+defmodule ElixirMangaDownloadr.MangaScrapper.IndexPage do
   alias ElixirMangaDownloadr.MangaChapter
 
   def get_manga_info(html) do
