@@ -1,4 +1,8 @@
 defmodule ElixirMangaDownloadr.CLI do
+  @moduledoc """
+  module responsible for the CLI operations
+  """
+
   alias ElixirMangaDownloadr.Workflow
 
   def main(args) do

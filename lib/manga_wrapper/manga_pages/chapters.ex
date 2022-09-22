@@ -1,8 +1,9 @@
 defmodule Chapters do
+
   import Logger
   use Tesla
 
- plug Tesla.Middleware.FollowRedirects, max_redirects: 3 
+ plug Tesla.Middleware.FollowRedirects, max_redirects: 3
 
   def chapter_page(chapter_link) do
     case get(chapter_link) do

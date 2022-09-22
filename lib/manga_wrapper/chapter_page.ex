@@ -1,5 +1,5 @@
-defmodule ElixirMangaDownloadr.ChapterPage do
-  def fetch_pages(html) do 
+defmodule ElixirMangaDownloadr.MangaWrapper.ChapterPage do
+  def fetch_pages(html) do
     chapters = Floki.find(html, "p#arraydata")
     IO.inspect(html)
     IO.inspect(chapters)

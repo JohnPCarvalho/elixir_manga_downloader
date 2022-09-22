@@ -1,8 +1,8 @@
-defmodule ElixirMangaDownloadr.Mangas do
+defmodule ElixirMangaDownloadr.MangaWrapper.Mangas do
   alias ElixirMangaDownloadr.Manga
 
-  import ElixirMangaDownloadr.IndexPage
-  import ElixirMangaDownloadr.ChapterPage
+  import ElixirMangaDownloadr.MangaWrapper.IndexPage
+  import ElixirMangaDownloadr.MangaWrapper.ChapterPage
   import ElixirMangaDownloadr.Files
 
   import MainPage

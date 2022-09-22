@@ -1,6 +1,6 @@
 defmodule ElixirMangaDownloadr.Workflow do
   alias ElixirMangaDownloadr.FileTransfer
-  alias ElixirMangaDownloadr.Mangas
+  alias ElixirMangaDownloadr.MangaWrapper.Mangas
   alias ElixirMangaDownloadr.PdfConverter
 
   @doc """
