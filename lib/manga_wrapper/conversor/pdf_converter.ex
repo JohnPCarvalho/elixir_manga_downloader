@@ -1,5 +1,5 @@
 defmodule ElixirMangaDownloadr.MangaWrapper.PdfConverter do
-  alias ElixirMangaDownloadr.Files
+  alias ElixirMangaDownloadr.MangaWrapper.Files
   require Logger
 
   # Kindle maximum resolution
