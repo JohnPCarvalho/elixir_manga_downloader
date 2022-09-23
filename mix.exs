@@ -17,7 +17,7 @@ defmodule ElixirMangaDownloadr.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :bamboo, :bamboo_smtp]
     ]
   end
 
@@ -27,7 +27,9 @@ defmodule ElixirMangaDownloadr.MixProject do
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.4.0", override: true},
       {:tesla, "~> 1.4"},
       {:floki, "~> 0.31.0"},
-      {:porcelain, "~> 2.0.3"}
+      {:porcelain, "~> 2.0.3"},
+      {:bamboo, "~> 2.2.0"},
+      {:bamboo_smtp, "~> 4.1.0"}
     ]
   end
 end
