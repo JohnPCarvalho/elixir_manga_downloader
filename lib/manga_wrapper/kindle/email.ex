@@ -6,7 +6,7 @@ defmodule ElixirMangaDownloadr.MangaWrapper.Kindle.Email  do
       to: to,
       from: "myemailserver@gmail.com",
       subject: "Your book has arrived!",
-      html_body: "<strong>Check out your new books on your kindle!</strong>"
+      html_body: "<strong>Check out your new books on your kindle!</strong>",
       text_body: "It may take a while."
     )
     |> put_attachment(file)
