@@ -2,7 +2,7 @@
 
 **This is a WIP**
 
-## Installation
+## Installation:
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 by adding `elixir_manga_downloadr` to your list of dependencies in `mix.exs`:
