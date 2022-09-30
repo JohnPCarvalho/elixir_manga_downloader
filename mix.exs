@@ -26,6 +26,7 @@ defmodule ElixirMangaDownloadr.MixProject do
     [
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.4.0", override: true},
       {:tesla, "~> 1.4"},
+      {hackney, ".*", {git, "git://github.com/benoitc/hackney.git", {branch, "master"}}},
       {:floki, "~> 0.31.0"},
       {:porcelain, "~> 2.0.3"},
       {:bamboo, "~> 2.2.0"},
