@@ -1,7 +1,7 @@
 defmodule ElixirMangaDownloadr.MangaWrapper.Kindle.Email  do
   import Bamboo.Email
 
-  def epub_email(to, file) do
+  def manga_email(to, file) do
     new_email(
       to: to,
       from: "myemailserver@gmail.com",
