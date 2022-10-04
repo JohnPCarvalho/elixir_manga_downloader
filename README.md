@@ -1,6 +1,8 @@
 # ElixirMangaDownloadr
 
 **This is a WIP**
+ [] - Dockerize application
+ [] - email functionality
 
 ## Installation:
 
